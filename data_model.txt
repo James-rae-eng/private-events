@@ -1,0 +1,12 @@
+user
+has_many events
+username:string
+
+
+event
+belongs_to user
+has_many users
+title:text
+date:datetime
+location:text
+

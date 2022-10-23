@@ -1,0 +1,13 @@
+<h1><%= @event.title %></h1>
+
+<p><%= @event.date%></p>
+
+<p><%= @event.location%></p>
+
+<%= link_to "Delete event", event_path(@event), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } 
+%>
+
+<%= link_to "Home", root_path %>

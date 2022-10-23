@@ -46,6 +46,16 @@ class EventsController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+  def rsvp
+    @event = Event.find(params[:event_id])
+    if @event.attendees.include?(current_user)
+      redirect_to @event
+    else
+      @event.attendees << current_user
+      redirect_to @event
+    end
+  end
+
   private
 
   def set_event

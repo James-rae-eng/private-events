@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'events/index'
 
   resources :users
-  resources :events
+  resources :events do
+    get 'rsvp'
+  end
 
   root "events#index"
 

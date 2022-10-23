@@ -10,4 +10,18 @@
                   } 
 %>
 
+<ul>
+    <% @event.attendees.each do |user| %>
+            <li>
+                <%= user.username %>
+            </li>
+    <% end %>
+</ul>
+
+<% if current_user.id == @event.creator.id %>
+    <p> </p>
+<% else %>
+    <%= link_to "Attend this event", event_rsvp_path(@event.id) %>
+<% end %>
+
 <%= link_to "Home", root_path %>

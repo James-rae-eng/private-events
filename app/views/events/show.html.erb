@@ -4,11 +4,13 @@
 
 <p><%= @event.location%></p>
 
-<%= link_to "Delete event", event_path(@event), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } 
-%>
+<% if current_user.id == @event.creator.id %>
+    <%= link_to "Delete event", event_path(@event), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                    } 
+    %>
+<% end %>
 
 <ul>
     <% @event.attendees.each do |user| %>

@@ -1,4 +1,4 @@
-<h1>All events</h1>
+<h1>Home</h1>
 
 <% if user_signed_in? %>
   <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
@@ -7,16 +7,27 @@
   <li><%= link_to 'Sign up', new_user_registration_path %></li>
 <% end %>
 
+<% if user_signed_in? %>
+  <%= link_to "View profile", users_path %>
+<% end %>
+
+<h2>All current events:</h2>
 <ul>
-    <% @events.each do |event| %>
-            <li>
-                <%= link_to event.title, event %>
-            </li>
+    <% @events.future.each do |event| %>
+      <li>
+          <%= link_to event.title, event %>
+      </li>
     <% end %>
 </ul>
 
 <%= link_to "Create a new event", new_event_path %>
 
-<% if user_signed_in? %>
-  <%= link_to "View profile", users_path %>
-<% end %>
+<h4>Past events:</h4>
+<ul>
+    <% @events.past.each do |event| %>
+      <li>
+          <%= link_to event.title, event %>
+      </li>
+    <% end %>
+</ul>
+
